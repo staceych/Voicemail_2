@@ -19,7 +19,7 @@ import SentConfirmationDialog from '@/components/sent-confirmation-dialog';
 export default function Home() {
   const [audioBlob, setAudioBlob] = useState<Blob | null>(null);
   const [photos, setPhotos] = useState<File[]>([]);
-  const [selectedBackground, setSelectedBackground] = useState<ImagePlaceholder | null>(PlaceHolderImages[0] || null);
+  const [selectedBackground, setSelectedBackground] = useState<ImagePlaceholder | null>(null);
   const [wantTranscript, setWantTranscript] = useState(false);
   const [transcript, setTranscript] = useState('');
   const [isTranscribing, setIsTranscribing] = useState(false);
@@ -181,10 +181,10 @@ export default function Home() {
           </div>
         </Card>
 
-        <BackgroundSelector
+        {/* <BackgroundSelector
           selected={selectedBackground}
           onSelect={setSelectedBackground}
-        />
+        /> */}
       </main>
 
       <SentConfirmationDialog

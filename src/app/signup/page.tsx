@@ -9,72 +9,73 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useState } from 'react';
 import { Loader2 } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '@/lib/firebase';
 import { useToast } from '@/hooks/use-toast';
+import { createUser, findUserByUsername } from '@/lib/firebase';
 
-export default function LoginPage() {
+export default function SignUpPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const { toast } = useToast();
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleSignUp = (e: React.FormEvent) => {
     e.preventDefault();
+    if (password !== confirmPassword) {
+      toast({
+        title: "Passwords don't match!",
+        variant: 'destructive',
+      });
+      return;
+    }
     setIsLoading(true);
-    // We are using a dummy domain to use Firebase email/password auth with a username
-    const email = `${username}@voicemail.app`;
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log('Logged in with:', user);
-        router.push('/');
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.error('Login error:', errorCode, errorMessage);
+
+    setTimeout(() => {
+      if (findUserByUsername(username)) {
         toast({
-          title: 'Login Failed',
-          description: 'Please check your username and password and try again.',
+          title: 'Sign-up Failed',
+          description: 'This username is already taken. Please choose another one.',
           variant: 'destructive',
         });
         setIsLoading(false);
-      });
+      } else {
+        createUser({ username, password });
+        console.log('Signed up with:', { username });
+        router.push('/login');
+      }
+    }, 1000);
   };
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-blue-50 to-white p-4">
       <div className="text-center mb-8">
-        <h1 className="text-5xl font-headline font-bold text-gray-800">Welcome to VoiceMail</h1>
+        <h1 className="text-5xl font-headline font-bold text-gray-800">Create Your Account</h1>
       </div>
 
       <div className="relative w-full max-w-md">
-        {/* Login Card */}
+        {/* Sign-up Card */}
         <Card className="relative z-20 w-full shadow-lg rounded-lg border-2 border-gray-200">
           <CardHeader>
             <div className="flex justify-between items-baseline">
-              <CardTitle className="text-3xl font-bold">Login</CardTitle>
+              <CardTitle className="text-3xl font-bold">Sign Up</CardTitle>
               <CardDescription>
-                Don&apos;t have an account?{' '}
-                <Link href="/signup" className="text-primary hover:underline">
-                  Sign up!
+                Already have an account?{' '}
+                <Link href="/login" className="text-primary hover:underline">
+                  Log in!
                 </Link>
               </CardDescription>
             </div>
           </CardHeader>
-          <form onSubmit={handleLogin}>
+          <form onSubmit={handleSignUp}>
             <CardContent className="space-y-6">
-              <div className="space-y-2">
+               <div className="space-y-2">
                 <Label htmlFor="username">Username</Label>
                 <Input
                   id="username"
@@ -98,15 +99,21 @@ export default function LoginPage() {
                   className="bg-white"
                 />
               </div>
-              <div className="flex items-center space-x-2">
-                <Checkbox id="keep-logged-in" />
-                <Label htmlFor="keep-logged-in" className="font-normal">
-                  Keep me logged in
-                </Label>
+              <div className="space-y-2">
+                <Label htmlFor="confirm-password">Confirm Password</Label>
+                <Input
+                  id="confirm-password"
+                  type="password"
+                  required
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  disabled={isLoading}
+                  className="bg-white"
+                />
               </div>
               <Button className="w-full bg-blue-300 hover:bg-blue-400 text-black text-lg" type="submit" disabled={isLoading}>
                 {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                Log In
+                Create Account
               </Button>
             </CardContent>
           </form>
@@ -139,5 +146,3 @@ export default function LoginPage() {
     </main>
   );
 }
-
-
