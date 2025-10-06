@@ -1,21 +1,8 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp, getApps, getApp, FirebaseApp } from "firebase/app";
+  "projectId": "studio-4552693243-98863",
+  "appId": "1:596086595307:web:3eb1f1f6a7430ce39068ae",
+  "apiKey": "AIzaSyAViJUMdSHLoawebc5mF_8p-cZabC4x02c",
+  "authDomain": "studio-4552693243-98863.firebaseapp.com",
+  "measurementId": "",
+  "messagingSenderId": "596086595307"
 
-// Your web app's Firebase configuration
-// IMPORTANT: Replace with your new Firebase project's configuration.
-const firebaseConfig = {
-  // "projectId": "...",
-  // "appId": "...",
-  // "apiKey": "...",
-  // "authDomain": "...",
-};
 
-// Initialize Firebase
-let app: FirebaseApp;
-if (getApps().length === 0) {
-  app = initializeApp(firebaseConfig);
-} else {
-  app = getApp();
-}
-
-export { app };
