@@ -1,0 +1,34 @@
+{
+  "placeholderImages": [
+    {
+      "id": "bg-1",
+      "description": "Airmail Envelope",
+      "imageUrl": "https://images.unsplash.com/photo-1614853316149-c16aa1b35c13?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "airmail envelope"
+    },
+    {
+      "id": "bg-2",
+      "description": "Vintage Parchment",
+      "imageUrl": "https://images.unsplash.com/photo-1593335937242-259128c7c39b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "vintage parchment"
+    },
+    {
+      "id": "bg-3",
+      "description": "Elegant Stationery",
+      "imageUrl": "https://images.unsplash.com/photo-1516410386927-4a41f7cf2436?q=80&w=1994&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "elegant stationery"
+    },
+    {
+      "id": "bg-4",
+      "description": "Lined Paper",
+      "imageUrl": "https://images.unsplash.com/photo-1588282322673-c31942a55f5e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "lined paper"
+    },
+    {
+      "id": "bg-5",
+      "description": "Floral Letter",
+      "imageUrl": "https://images.unsplash.com/photo-1499969083324-811c7f53a8a9?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "floral letter"
+    }
+  ]
+}
